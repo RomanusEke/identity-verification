@@ -3,9 +3,14 @@ frontend:
   phases:
     preBuild:
       commands:
+        - echo "Loading environment variables"
+        - source env-vars.config
         - npm ci
     build:
       commands:
+        - echo "Building with Rekognition config"
+        - REACT_APP_REKOGNITION_COLLECTION_ID=$REACT_APP_REKOGNITION_COLLECTION_ID
+        - REACT_APP_API_ENDPOINT=$REACT_APP_API_ENDPOINT
         - npm run build
   artifacts:
     baseDirectory: build
